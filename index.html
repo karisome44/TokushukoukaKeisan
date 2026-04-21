@@ -160,6 +160,83 @@
         .close-install {
             background: none; border: none; color: #8b8396; font-size: 20px; padding: 0 0 0 10px; cursor: pointer;
         }
+        /* =========================================
+   手機版 (Mobile) 響應式優化設定
+   當螢幕寬度小於 600px 時會自動套用以下規則
+========================================= */
+@media (max-width: 600px) {
+    /* 1. 減少整體留白，讓出更多空間給內容 */
+    body { 
+        padding: 10px; 
+        padding-bottom: 90px; 
+    }
+    .container { 
+        padding: 15px; 
+    }
+
+    /* 2. 主標題稍微縮小 */
+    .main-title {
+        font-size: 22px;
+    }
+
+    /* 3. 工具列 (Action bar) 改為上下排列，按鈕變大更好按 */
+    .action-bar { 
+        flex-direction: column; 
+        align-items: stretch; 
+        gap: 12px;
+    }
+    .action-bar > span {
+        text-align: center;
+        margin-top: 5px;
+    }
+    .divider { 
+        display: none; /* 手機版隱藏分隔線 */
+    }
+    .btn-sm {
+        padding: 12px; /* 增加按鈕高度，方便手指點擊 */
+        font-size: 15px;
+    }
+    #bulkTypeSelect {
+        width: 100% !important; /* 批次下拉選單佔滿寬度 */
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    /* 4. 角色列表優化，防止名字被擠壓 */
+    .char-grid { 
+        grid-template-columns: 1fr; /* 強制單欄顯示 */
+    }
+    .char-item {
+        padding: 12px 10px; /* 增加觸控範圍 */
+    }
+    .char-label {
+        font-size: 15px;
+    }
+    .char-type-select {
+        width: 110px;
+        font-size: 14px;
+        padding: 8px 4px;
+    }
+
+    /* 5. 最重要：自己的角色卡槽位，把下拉選單由「左右並排」改為「上下排列」 */
+    .slot-card {
+        padding: 15px;
+    }
+    .slot-inputs { 
+        flex-direction: column; 
+        gap: 10px; 
+    }
+    
+    /* 6. 覺醒角色目標也改成上下排 */
+    .slot-card[style*="display: flex"] {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+    .slot-card[style*="display: flex"] > div:last-child {
+        width: 100% !important;
+    }
+}
     </style>
 </head>
 <body>
