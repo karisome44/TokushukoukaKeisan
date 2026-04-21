@@ -2,13 +2,13 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- 這行是手機排版的靈魂，絕對不能漏掉！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>魔法使いの約束 - 智慧活動特效計算機</title>
     
     <!-- PWA 必備設定開始 -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#c69f53">
-    <!-- 針對 iOS 的設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="mhyk計算機">
@@ -35,10 +35,10 @@
             color: var(--text-main); 
             line-height: 1.6;
             padding: 20px;
-            padding-bottom: 80px; /* 預留底部橫幅空間 */
+            padding-bottom: 80px; 
+            margin: 0;
         }
 
-        /* 主標題樣式 */
         .header-wrapper { text-align: center; margin-bottom: 40px; margin-top: 20px;}
         .main-title { 
             font-family: 'Noto Serif TC', serif; 
@@ -55,6 +55,7 @@
             max-width: 850px; margin: 0 auto; background: var(--bg-card); 
             padding: 30px; border-radius: 16px; box-shadow: 0 8px 24px rgba(58, 50, 69, 0.05); 
             border: 1px solid var(--border-color);
+            box-sizing: border-box; /* 確保 padding 不會撐破螢幕 */
         }
 
         .section { margin-bottom: 30px; }
@@ -69,7 +70,7 @@
         select { 
             padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); 
             font-size: 14px; color: var(--text-main); background-color: var(--bg-card);
-            outline: none; transition: 0.3s; cursor: pointer; width: 100%;
+            outline: none; transition: 0.3s; cursor: pointer; width: 100%; box-sizing: border-box;
         }
         select:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px var(--accent-gold-light);}
 
@@ -79,7 +80,7 @@
             background: #f7f5f9; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-        .btn-sm { padding: 8px 15px; font-size: 13px; font-weight: 600; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: 0.2s;}
+        .btn-sm { padding: 8px 15px; font-size: 13px; font-weight: 600; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: 0.2s; box-sizing: border-box;}
         .btn-sm:disabled { opacity: 0.5; cursor: not-allowed; }
         .btn-outline { background: transparent; border-color: var(--text-muted); color: var(--text-main); }
         .btn-outline:hover:not(:disabled) { background: #eeeaf1; }
@@ -100,7 +101,7 @@
         .char-item { 
             display: flex; justify-content: space-between; align-items: center; 
             background: var(--bg-card); padding: 10px 12px; 
-            border: 1px solid var(--border-color); border-radius: 8px; transition: 0.2s;
+            border: 1px solid var(--border-color); border-radius: 8px; transition: 0.2s; box-sizing: border-box;
         }
         .char-item.has-bonus { border-color: var(--accent-gold); background-color: var(--accent-gold-light); }
         .char-label { display: flex; align-items: center; font-size: 14px; font-weight: 600; margin: 0; user-select: none; flex: 1; cursor: pointer;}
@@ -108,7 +109,7 @@
         .char-type-select { width: 105px; font-size: 13px; padding: 6px;}
 
         /* 槽位 */
-        .slot-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; background-color: #fcfbfd; }
+        .slot-card { border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; background-color: #fcfbfd; box-sizing: border-box;}
         .slot-label { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; font-weight: 600; letter-spacing: 1px; }
         .slot-inputs { display: flex; gap: 15px; }
         .slot-inputs > div { flex: 1; }
@@ -117,55 +118,39 @@
         .calc-btn { 
             width: 100%; padding: 16px; background-color: var(--text-main); color: var(--accent-gold); 
             border: 1px solid var(--text-main); border-radius: 12px; font-size: 18px; font-weight: 700; 
-            font-family: 'Noto Serif TC', serif; cursor: pointer; transition: 0.3s; margin-top: 10px; letter-spacing: 2px;
+            font-family: 'Noto Serif TC', serif; cursor: pointer; transition: 0.3s; margin-top: 10px; letter-spacing: 2px; box-sizing: border-box;
         }
         .calc-btn:hover { background-color: #2c2536; color: #dfb96e;}
         
         /* 結果區塊 */
-        .result-box { margin-top: 30px; padding: 25px; background-color: var(--accent-gold-light); border: 1px solid var(--accent-gold); border-radius: 12px; text-align: center; }
+        .result-box { margin-top: 30px; padding: 25px; background-color: var(--accent-gold-light); border: 1px solid var(--accent-gold); border-radius: 12px; text-align: center; box-sizing: border-box;}
         .result-title { font-family: 'Noto Serif TC', serif; color: var(--text-main); font-weight: 600; font-size: 16px; margin-bottom: 5px;}
         .result-number { font-size: 42px; font-weight: bold; color: var(--accent-gold); font-family: 'Noto Serif TC', serif;}
-        .detail-box { text-align: left; background: var(--bg-card); padding: 15px; border-radius: 8px; font-size: 14px; margin-top: 15px; border: 1px solid var(--border-color); color: var(--text-main); }
+        .detail-box { text-align: left; background: var(--bg-card); padding: 15px; border-radius: 8px; font-size: 14px; margin-top: 15px; border: 1px solid var(--border-color); color: var(--text-main); box-sizing: border-box;}
 
-        /* ===== 安裝 APP 橫幅提示樣式 ===== */
+        /* 安裝橫幅 */
         .install-banner {
-            display: none; /* 預設隱藏 */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--text-main);
-            color: white;
-            padding: 15px 20px;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            box-sizing: border-box;
-            align-items: center;
-            justify-content: space-between;
+            display: none; position: fixed; bottom: 0; left: 0; width: 100%;
+            background-color: var(--text-main); color: white; padding: 15px 20px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.15); z-index: 1000;
+            box-sizing: border-box; align-items: center; justify-content: space-between;
         }
         .install-text { font-size: 14px; line-height: 1.4;}
         .install-text strong { color: var(--accent-gold); }
         .install-btn {
-            background-color: var(--accent-gold);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
+            background-color: var(--accent-gold); color: white; border: none;
+            padding: 8px 16px; border-radius: 20px; font-weight: bold; font-size: 14px; cursor: pointer; white-space: nowrap;
         }
-        .close-install {
-            background: none; border: none; color: #8b8396; font-size: 20px; padding: 0 0 0 10px; cursor: pointer;
-        }
+        .close-install { background: none; border: none; color: #8b8396; font-size: 20px; padding: 0 0 0 10px; cursor: pointer; }
+
+        /* 版本標籤 */
+        .version-tag { text-align: center; color: #b5b0bb; font-size: 13px; margin-top: 40px; font-weight: bold; }
 
         /* =========================================
            加強版！手機版 (Mobile) 響應式優化設定
            將觸發寬度提升到 768px (涵蓋所有大螢幕手機與直向平板)
         ========================================= */
         @media (max-width: 768px) {
-            /* 1. 版面留白縮減，基礎字體放大 */
             body { 
                 padding: 10px; 
                 padding-bottom: 90px; 
@@ -180,9 +165,9 @@
                 font-size: 18px;
             }
 
-            /* 2. 所有下拉選單與按鈕，強制符合手指觸控最小標準 (至少 44px 高) */
+            /* 所有下拉選單與按鈕，強制符合手指觸控最小標準 */
             select {
-                font-size: 16px !important; /* 避免 iOS Safari 點擊時自動放大畫面 */
+                font-size: 16px !important; 
                 padding: 12px 10px;
                 height: auto;
                 min-height: 48px; 
@@ -191,13 +176,14 @@
                 padding: 12px;
                 font-size: 16px;
                 min-height: 48px;
+                width: 100%; /* 手機上按鈕拉滿寬度 */
             }
             .calc-btn {
                 font-size: 20px;
                 padding: 18px;
             }
 
-            /* 3. 工具列強制垂直排列 */
+            /* 工具列強制垂直排列 */
             .action-bar { 
                 flex-direction: column; 
                 align-items: stretch; 
@@ -215,13 +201,16 @@
                 width: 100% !important; 
             }
 
-            /* 4. 角色列表「強制」變成單欄上下排列 */
+            /* 角色列表「強制」變成單欄上下排列 */
             .char-grid { 
                 grid-template-columns: 1fr !important; 
                 gap: 10px;
+                display: flex;
+                flex-direction: column;
             }
             .char-item {
                 padding: 15px 12px; /* 上下加寬讓選項更好點 */
+                width: 100%;
             }
             .char-label {
                 font-size: 16px;
@@ -232,11 +221,11 @@
                 margin-right: 12px;
             }
             .char-type-select {
-                width: 120px;
+                width: 130px;
                 font-size: 15px;
             }
 
-            /* 5. 槽位設定：完全改為上下排列 */
+            /* 槽位設定：完全改為上下排列 */
             .slot-card {
                 padding: 15px;
             }
@@ -319,7 +308,10 @@
     </div>
 </div>
 
-<!-- ===== 安裝 APP 的橫幅 UI ===== -->
+<!-- 用來確認有沒有更新成功的標記 -->
+<div class="version-tag">目前版本：v2.0 (手機優化版)</div>
+
+<!-- 安裝 APP 橫幅 -->
 <div id="installBanner" class="install-banner">
     <div class="install-text">
         將此計算機 <strong>安裝到手機主畫面</strong><br>
@@ -338,7 +330,6 @@
     const installBtn = document.getElementById('installBtn');
     const closeInstall = document.getElementById('closeInstall');
 
-    // 註冊 Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js').then(reg => {
@@ -349,32 +340,25 @@
         });
     }
 
-    // 監聽安裝事件 (主要針對 Android/Chrome)
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installBanner.style.display = 'flex'; // 顯示安裝橫幅
+        installBanner.style.display = 'flex'; 
     });
 
-    // 點擊安裝按鈕
     installBtn.addEventListener('click', async () => {
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                console.log('使用者同意安裝');
-            }
             deferredPrompt = null;
             installBanner.style.display = 'none';
         }
     });
 
-    // 關閉橫幅
     closeInstall.addEventListener('click', () => {
         installBanner.style.display = 'none';
     });
 
-    // 偵測 iOS Safari (iOS 不支援自訂按鈕直接安裝，需跳提示請用戶點選分享)
     const isIos = () => {
       const userAgent = window.navigator.userAgent.toLowerCase();
       return /iphone|ipad|ipod/.test(userAgent);
@@ -383,13 +367,12 @@
 
     if (isIos() && !isInStandaloneMode()) {
         installBanner.style.display = 'flex';
-        installBtn.style.display = 'none'; // 隱藏安裝按鈕
+        installBtn.style.display = 'none'; 
         installBanner.querySelector('.install-text').innerHTML = 
             `點擊下方 <strong>分享[↑]</strong> 圖示<br>選擇「<strong>加入主畫面</strong>」即可安裝為 APP`;
     }
 
-
-    // === 以下保留原本所有的邏輯程式碼 ===
+    // === 核心邏輯 ===
     const roster =[
         { group: "中央の魔法使い", chars:["オズ（奧茲）", "アーサー（亞瑟）", "カイン（凱因）", "リケ（利凱）"] },
         { group: "北の魔法使い", chars:["スノウ（思諾）", "ホワイト（懷特）", "ミスラ（密斯拉）", "オーエン（歐文）", "ブラッドリー（布拉德利）"] },
