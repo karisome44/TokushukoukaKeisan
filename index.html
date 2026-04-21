@@ -18,7 +18,6 @@
     <!-- 引入典雅的 Serif 字體以符合魔法世界的氛圍 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 這裡保留你原本所有的 CSS，僅新增安裝橫幅的樣式 */
         :root {
             --bg-main: #fcfbfd; 
             --bg-card: #ffffff;
@@ -128,7 +127,7 @@
         .result-number { font-size: 42px; font-weight: bold; color: var(--accent-gold); font-family: 'Noto Serif TC', serif;}
         .detail-box { text-align: left; background: var(--bg-card); padding: 15px; border-radius: 8px; font-size: 14px; margin-top: 15px; border: 1px solid var(--border-color); color: var(--text-main); }
 
-        /* ===== 新增：手機安裝 APP 橫幅提示樣式 ===== */
+        /* ===== 安裝 APP 橫幅提示樣式 ===== */
         .install-banner {
             display: none; /* 預設隱藏 */
             position: fixed;
@@ -160,83 +159,84 @@
         .close-install {
             background: none; border: none; color: #8b8396; font-size: 20px; padding: 0 0 0 10px; cursor: pointer;
         }
+
         /* =========================================
-   手機版 (Mobile) 響應式優化設定
-   當螢幕寬度小於 600px 時會自動套用以下規則
-========================================= */
-@media (max-width: 600px) {
-    /* 1. 減少整體留白，讓出更多空間給內容 */
-    body { 
-        padding: 10px; 
-        padding-bottom: 90px; 
-    }
-    .container { 
-        padding: 15px; 
-    }
+           手機版 (Mobile) 響應式優化設定
+           當螢幕寬度小於 600px 時會自動套用以下規則
+        ========================================= */
+        @media (max-width: 600px) {
+            /* 1. 減少整體留白，讓出更多空間給內容 */
+            body { 
+                padding: 10px; 
+                padding-bottom: 90px; 
+            }
+            .container { 
+                padding: 15px; 
+            }
 
-    /* 2. 主標題稍微縮小 */
-    .main-title {
-        font-size: 22px;
-    }
+            /* 2. 主標題稍微縮小 */
+            .main-title {
+                font-size: 22px;
+            }
 
-    /* 3. 工具列 (Action bar) 改為上下排列，按鈕變大更好按 */
-    .action-bar { 
-        flex-direction: column; 
-        align-items: stretch; 
-        gap: 12px;
-    }
-    .action-bar > span {
-        text-align: center;
-        margin-top: 5px;
-    }
-    .divider { 
-        display: none; /* 手機版隱藏分隔線 */
-    }
-    .btn-sm {
-        padding: 12px; /* 增加按鈕高度，方便手指點擊 */
-        font-size: 15px;
-    }
-    #bulkTypeSelect {
-        width: 100% !important; /* 批次下拉選單佔滿寬度 */
-        padding: 10px;
-        font-size: 15px;
-    }
+            /* 3. 工具列 (Action bar) 改為上下排列，按鈕變大更好按 */
+            .action-bar { 
+                flex-direction: column; 
+                align-items: stretch; 
+                gap: 12px;
+            }
+            .action-bar > span {
+                text-align: center;
+                margin-top: 5px;
+            }
+            .divider { 
+                display: none; /* 手機版隱藏分隔線 */
+            }
+            .btn-sm {
+                padding: 12px; /* 增加按鈕高度，方便手指點擊 */
+                font-size: 15px;
+            }
+            #bulkTypeSelect {
+                width: 100% !important; /* 批次下拉選單佔滿寬度 */
+                padding: 10px;
+                font-size: 15px;
+            }
 
-    /* 4. 角色列表優化，防止名字被擠壓 */
-    .char-grid { 
-        grid-template-columns: 1fr; /* 強制單欄顯示 */
-    }
-    .char-item {
-        padding: 12px 10px; /* 增加觸控範圍 */
-    }
-    .char-label {
-        font-size: 15px;
-    }
-    .char-type-select {
-        width: 110px;
-        font-size: 14px;
-        padding: 8px 4px;
-    }
+            /* 4. 角色列表優化，防止名字被擠壓 */
+            .char-grid { 
+                grid-template-columns: 1fr; /* 強制單欄顯示 */
+            }
+            .char-item {
+                padding: 12px 10px; /* 增加觸控範圍 */
+            }
+            .char-label {
+                font-size: 15px;
+            }
+            .char-type-select {
+                width: 110px;
+                font-size: 14px;
+                padding: 8px 4px;
+            }
 
-    /* 5. 最重要：自己的角色卡槽位，把下拉選單由「左右並排」改為「上下排列」 */
-    .slot-card {
-        padding: 15px;
-    }
-    .slot-inputs { 
-        flex-direction: column; 
-        gap: 10px; 
-    }
-    
-    /* 6. 覺醒角色目標也改成上下排 */
-    .slot-card[style*="display: flex"] {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 10px;
-    }
-    .slot-card[style*="display: flex"] > div:last-child {
-        width: 100% !important;
-    }
-}
+            /* 5. 自己的角色卡槽位，由左右並排改為上下排列 */
+            .slot-card {
+                padding: 15px;
+            }
+            .slot-inputs { 
+                flex-direction: column; 
+                gap: 10px; 
+            }
+            
+            /* 6. 覺醒角色目標改成上下排 */
+            .slot-card[style*="display: flex"] {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 10px;
+            }
+            .slot-card[style*="display: flex"] > div:last-child {
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -247,7 +247,6 @@
 </div>
 
 <div class="container">
-    <!-- 此處省略中間內容，與你原來的 HTML 完全相同 -->
     <div class="section">
         <div class="section-title">本次活動特效角色</div>
         <p class="note">※ 勾選框僅為「批次套用工具」。設定完成後角色會亮起底色，套用後會自動取消勾選防誤改。</p>
@@ -304,7 +303,7 @@
     </div>
 </div>
 
-<!-- ===== 新增：安裝 APP 的橫幅 UI ===== -->
+<!-- ===== 安裝 APP 的橫幅 UI ===== -->
 <div id="installBanner" class="install-banner">
     <div class="install-text">
         將此計算機 <strong>安裝到手機主畫面</strong><br>
