@@ -140,69 +140,68 @@
         .version-tag { text-align: center; color: #b5b0bb; font-size: 14px; margin-top: 40px; font-weight: bold; }
 
         /* =========================================
-           v5.0 手機版全直式放大排版
-           強制所有元素獨立一行，字體與按鈕最大化
+           v5.1 手機版平衡排版
+           維持手指好點擊的尺寸，但恢復左右並排以節省空間
         ========================================= */
         @media (max-width: 768px) {
-            body { padding: 10px; padding-bottom: 100px; }
+            body { padding: 12px; padding-bottom: 90px; }
             .container { padding: 15px; border-radius: 12px; }
             
-            /* 標題放大 */
-            .main-title { font-size: 26px; }
-            .section-title { font-size: 20px; border-bottom: 2px solid var(--accent-gold-light); padding-bottom: 8px; margin-bottom: 20px; }
-            .note { font-size: 14px; }
+            /* 標題適度調整，不誇張 */
+            .main-title { font-size: 22px; }
+            .section-title { font-size: 18px; margin-bottom: 15px; }
 
-            /* 全域下拉選單放大 */
-            select { font-size: 16px !important; padding: 16px 12px; height: auto; border-width: 2px; }
+            /* 為了防止 iOS 點選時畫面自動放大，font-size 必須維持 16px，但減少 padding */
+            select { font-size: 16px !important; padding: 8px 10px; height: auto; }
 
-            /* ★ 工具列：除了復原重製，其餘全拆成單行 */
-            .action-bar { flex-direction: column; align-items: stretch; gap: 15px; padding: 20px 15px; border-width: 2px; }
+            /* 工具列：按鈕滿版但間距縮小 */
+            .action-bar { flex-direction: column; align-items: stretch; gap: 12px; padding: 15px; }
             .action-bar-top { display: flex; width: 100%; gap: 10px; }
-            .action-bar-top > button { flex: 1; padding: 14px; font-size: 16px; } /* 重製與復原按鈕放大並排 */
+            .action-bar-top > button { flex: 1; padding: 10px; font-size: 14px; } 
             .divider { display: none; }
             
-            .bulk-label { font-size: 16px; width: 100%; text-align: left; margin-bottom: -5px; }
-            .bulk-select { width: 100% !important; font-size: 16px; padding: 14px; }
-            #applyBulkBtn { padding: 16px; font-size: 18px; width: 100%; }
+            .bulk-label { font-size: 14px; width: 100%; margin-bottom: -5px; }
+            .bulk-select { width: 100% !important; padding: 10px; }
+            #applyBulkBtn { padding: 12px; font-size: 16px; width: 100%; }
 
-            /* ★ 角色選擇區塊：徹底改成上下兩行結構 */
-            .country-title { font-size: 20px; margin-bottom: 15px; }
-            .country-title input { width: 22px; height: 22px; margin-right: 12px; }
+            /* 角色選擇區塊：恢復左右並排，節省垂直空間 */
+            .country-title { font-size: 18px; margin-bottom: 12px; }
+            .country-title input { width: 20px; height: 20px; margin-right: 10px; }
             
-            .char-grid { display: block; } /* 取消網格，變成區塊堆疊 */
+            .char-grid { display: flex; flex-direction: column; gap: 8px; } /* 改為單欄清單 */
             .char-item { 
-                display: block; /* 強制變為區塊 */
-                padding: 18px 15px; 
-                margin-bottom: 12px; 
-                border-width: 2px; 
+                display: flex; /* 恢復左右並排 */
+                align-items: center; 
+                justify-content: space-between;
+                padding: 10px 12px; 
+                margin-bottom: 0;
             }
-            .char-label { width: 100%; margin-bottom: 15px; display: flex; align-items: center; }
-            .char-checkbox { width: 26px; height: 26px; margin-right: 15px; } /* 核取方塊超大化 */
+            .char-label { margin-bottom: 0; flex: 1; }
+            .char-checkbox { width: 20px; height: 20px; margin-right: 12px; flex-shrink: 0;} 
             
-            /* 角色名字放大 */
-            .char-jp { font-size: 20px; letter-spacing: 1px; }
-            .char-tw { font-size: 14px; margin-top: 4px; }
+            .char-jp { font-size: 16px; }
+            .char-tw { font-size: 12px; }
 
-            /* 下拉選單獨立一行且滿版 */
-            .char-type-select { display: block; width: 100% !important; font-size: 16px; padding: 14px 12px; }
+            /* 單一角色的下拉選單：限制寬度，避免擠壓到名字 */
+            .char-type-select { width: 120px !important; font-size: 14px !important; padding: 8px 4px; flex-shrink: 0; }
 
-            /* ★ 槽位區塊：所有下拉選單強制拆成獨立行 */
-            .slot-card { padding: 20px 15px; margin-bottom: 20px; border-width: 2px; }
-            .slot-label { font-size: 15px; margin-bottom: 15px; font-weight: bold; }
-            .slot-inputs { display: block; } /* 取消左右並排 */
-            .slot-inputs > div { display: block; width: 100%; margin-bottom: 15px; } /* 每一層加上底距 */
-            .slot-inputs > div:last-child { margin-bottom: 0; } /* 最後一個不用底距 */
+            /* 槽位區塊：因為文字較長，維持上下獨立行，但縮小間距 */
+            .slot-card { padding: 15px; margin-bottom: 15px; }
+            .slot-label { font-size: 14px; margin-bottom: 10px; }
+            .slot-inputs { display: flex; flex-direction: column; gap: 10px; } 
+            .slot-inputs > div { width: 100%; margin-bottom: 0; } 
             
-            .slot-card[style*="display: flex"] { display: block !important; }
-            .slot-card[style*="display: flex"] > div:first-child { margin-bottom: 15px; }
+            /* 覺醒目標槽位 */
+            .slot-card[style*="display: flex"] { flex-direction: column; align-items: flex-start !important; gap: 10px; }
+            .slot-card[style*="display: flex"] > div:first-child { margin-bottom: 0; }
             .slot-card[style*="display: flex"] > div:last-child { width: 100% !important; }
 
-            /* 計算按鈕放大 */
-            .calc-btn { font-size: 22px; padding: 20px; margin-top: 25px; border-width: 2px; }
+            /* 計算按鈕 */
+            .calc-btn { font-size: 18px; padding: 15px; margin-top: 15px; }
             
-            /* 結果區塊放大 */
-            .result-box { padding: 30px 20px; }
-            .result-number { font-size: 48px; }
+            /* 結果區塊 */
+            .result-box { padding: 25px 15px; }
+            .result-number { font-size: 38px; }
         }
     </style>
 </head>
