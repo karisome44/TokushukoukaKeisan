@@ -161,11 +161,11 @@
         }
 
         /* =========================================
-           手機版 (Mobile) 響應式優化設定
-           當螢幕寬度小於 600px 時會自動套用以下規則
+           加強版！手機版 (Mobile) 響應式優化設定
+           將觸發寬度提升到 768px (涵蓋所有大螢幕手機與直向平板)
         ========================================= */
-        @media (max-width: 600px) {
-            /* 1. 減少整體留白，讓出更多空間給內容 */
+        @media (max-width: 768px) {
+            /* 1. 版面留白縮減，基礎字體放大 */
             body { 
                 padding: 10px; 
                 padding-bottom: 90px; 
@@ -173,65 +173,81 @@
             .container { 
                 padding: 15px; 
             }
-
-            /* 2. 主標題稍微縮小 */
             .main-title {
-                font-size: 22px;
+                font-size: 24px;
+            }
+            .section-title {
+                font-size: 18px;
             }
 
-            /* 3. 工具列 (Action bar) 改為上下排列，按鈕變大更好按 */
+            /* 2. 所有下拉選單與按鈕，強制符合手指觸控最小標準 (至少 44px 高) */
+            select {
+                font-size: 16px !important; /* 避免 iOS Safari 點擊時自動放大畫面 */
+                padding: 12px 10px;
+                height: auto;
+                min-height: 48px; 
+            }
+            .btn-sm {
+                padding: 12px;
+                font-size: 16px;
+                min-height: 48px;
+            }
+            .calc-btn {
+                font-size: 20px;
+                padding: 18px;
+            }
+
+            /* 3. 工具列強制垂直排列 */
             .action-bar { 
                 flex-direction: column; 
                 align-items: stretch; 
                 gap: 12px;
             }
             .action-bar > span {
-                text-align: center;
+                text-align: left;
                 margin-top: 5px;
+                font-size: 15px !important;
             }
             .divider { 
-                display: none; /* 手機版隱藏分隔線 */
-            }
-            .btn-sm {
-                padding: 12px; /* 增加按鈕高度，方便手指點擊 */
-                font-size: 15px;
+                display: none; 
             }
             #bulkTypeSelect {
-                width: 100% !important; /* 批次下拉選單佔滿寬度 */
-                padding: 10px;
-                font-size: 15px;
+                width: 100% !important; 
             }
 
-            /* 4. 角色列表優化，防止名字被擠壓 */
+            /* 4. 角色列表「強制」變成單欄上下排列 */
             .char-grid { 
-                grid-template-columns: 1fr; /* 強制單欄顯示 */
+                grid-template-columns: 1fr !important; 
+                gap: 10px;
             }
             .char-item {
-                padding: 12px 10px; /* 增加觸控範圍 */
+                padding: 15px 12px; /* 上下加寬讓選項更好點 */
             }
             .char-label {
-                font-size: 15px;
+                font-size: 16px;
+            }
+            .char-checkbox {
+                width: 20px; /* 核取方塊放大 */
+                height: 20px;
+                margin-right: 12px;
             }
             .char-type-select {
-                width: 110px;
-                font-size: 14px;
-                padding: 8px 4px;
+                width: 120px;
+                font-size: 15px;
             }
 
-            /* 5. 自己的角色卡槽位，由左右並排改為上下排列 */
+            /* 5. 槽位設定：完全改為上下排列 */
             .slot-card {
                 padding: 15px;
             }
             .slot-inputs { 
                 flex-direction: column; 
-                gap: 10px; 
+                gap: 12px; 
             }
-            
-            /* 6. 覺醒角色目標改成上下排 */
             .slot-card[style*="display: flex"] {
                 flex-direction: column;
                 align-items: flex-start !important;
-                gap: 10px;
+                gap: 12px;
             }
             .slot-card[style*="display: flex"] > div:last-child {
                 width: 100% !important;
